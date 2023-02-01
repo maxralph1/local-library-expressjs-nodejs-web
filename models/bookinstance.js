@@ -18,7 +18,7 @@ const BookInstanceSchema = new Schema({
 // Virtual for bookinstance's URL
 BookInstanceSchema.virtual("url").get(function () {
  // We don't use arrow function as we'll need the this object
- return `catalog/bookinstance/${this._id}`;
+ return `/catalog/bookinstance/${this._id}`;
 });
 
 // Virtual property for bookinstance's due_back date field
