@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -11,13 +12,22 @@ const catalogRouter = require('./routes/catalog');
 const app = express();
 
 const mongoose = require("mongoose");
-mongoose.set('strictQuery', false);
-const mongoDB = "mongodb+srv://maxralph:nD2ocdX8EIbQ4jEs@cluster0.tqmkrlq.mongodb.net/local_library?retryWrites=true&w=majority";
 
-main().catch(err => console.log(err));
-async function main() {
-  await mongoose.connect(mongoDB);
+
+mongoose.set('strictQuery', false);
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.DATABASE_URI, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true
+        });
+    } catch (err) {
+        console.error(err);
+    }
 }
+
+connectDB();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
