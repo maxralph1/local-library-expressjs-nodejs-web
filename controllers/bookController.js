@@ -52,7 +52,7 @@ exports.book_list = (req, res, next) => {
 };
 
 // Display detail page for a specific book
-exports.book_detail = (req, res) => {
+exports.book_detail = (req, res, next) => {
  // res.send(`NOT IMPLEMENTED: Book detail: ${req.params.id}`);
  async.parallel(
   {
@@ -72,7 +72,7 @@ exports.book_detail = (req, res) => {
    }
    if (results.book == null) {
     // No results
-    const err = new Error("book not found");
+    const err = new Error("Book not found");
     err.status = 404;
     return next(err);
    }
