@@ -5,7 +5,8 @@ const Book = require("../models/book");
 const async = require("async");
 const { body, validationResult } = require("express-validator");
 
-// Display list of all Genre
+
+// Display list of all Genres
 exports.genre_list = (req, res, next) => {
  // res.send("NOT IMPLEMENTED: Genre list");
  Genre.find()
